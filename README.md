@@ -15,3 +15,8 @@
 
 # CollectionView da bir row da 2 ve daha fazla Haber gösterebilen extra puan alıcaktır.
 - İsteyen Uygulamasını Icon Koyabilir.
+
+# Demo
+
+
+![newsgif](https://user-images.githubusercontent.com/88059407/190893018-bbc55f5a-0cb1-40c5-b302-5506b03eb226.gif)
