@@ -9,7 +9,7 @@ import UIKit
 import WebKit
 
 var selectedNews:String = ""
-let url = URL(string: selectedNews)!
+
 class DetailPage: UIViewController, WKNavigationDelegate {
     
     var collectionView: UICollectionView!
@@ -17,6 +17,8 @@ class DetailPage: UIViewController, WKNavigationDelegate {
     var detailID = "detailID"
     
     var titleLbl = UILabel()
+    
+    let url = URL(string: selectedNews)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +56,7 @@ class DetailPage: UIViewController, WKNavigationDelegate {
 }
 
 extension DetailPage: UICollectionViewDelegate, UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
             return newsArr.count
@@ -72,22 +75,25 @@ extension DetailPage: UICollectionViewDelegate, UICollectionViewDataSource{
     }
     
     @objc func buttonClicked(sender: UIButton){
+        
         let indexpath1 = IndexPath(row: sender.tag, section: 0)
         selectedNews = newsArr[indexpath1.row].desc
         
         navigationController?.pushViewController(WebView(), animated: true)
+        
     }
     
 }
 
 class WebView:UIViewController, WKNavigationDelegate{
     var webView: WKWebView!
+    var urlDetail = DetailPage()
     override func viewDidLoad() {
         webView = WKWebView()
         webView.navigationDelegate = self
-        webView.load(URLRequest(url: url))
+        webView.load(URLRequest(url: urlDetail.url!))
         webView.allowsBackForwardNavigationGestures = true
         view = webView
-        
+
     }
 }
